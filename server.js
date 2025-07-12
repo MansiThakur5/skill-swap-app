@@ -25,5 +25,8 @@ app.post('/api/users', (req, res) => {
   fs.writeFileSync('users.json', JSON.stringify(users, null, 2));
   res.status(201).json({ message: 'User added' });
 });
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'login.html'));
+});
 
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
