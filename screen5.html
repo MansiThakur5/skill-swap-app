@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Screen 5 - Send Request</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Send Skill Swap Request</h2>
+    <form onsubmit="submitRequest(event)">
+      <label>Your Offered Skill:</label>
+      <select id="yourSkill">
+        <option>HTML</option>
+        <option>Design</option>
+      </select>
+
+      <label>Skill You Want:</label>
+      <select id="theirSkill"></select>
+
+      <label>Message:</label>
+      <textarea id="message" placeholder="Say something..."></textarea>
+
+      <button type="submit">Submit Request</button>
+    </form>
+  </div>
+  <script>
+    const user = JSON.parse(localStorage.getItem('targetUser'));
+
+    window.onload = () => {
+      const theirSkill = document.getElementById('theirSkill');
+      user.wanted.forEach(skill => {
+        const opt = document.createElement('option');
+        opt.value = skill;
+        opt.textContent = skill;
+        theirSkill.appendChild(opt);
+      });
+    };
+
+    function submitRequest(e) {
+      e.preventDefault();
+      const request = {
+        to: user.name,
+        offered: document.getElementById('yourSkill').value,
+        wanted: document.getElementById('theirSkill').value,
+        message: document.getElementById('message').value,
+        status: 'Pending'
+      };
+
+      const requests = JSON.parse(localStorage.getItem('requests') || '[]');
+      requests.push(request);
+      localStorage.setItem('requests', JSON.stringify(requests));
+
+      alert('Request Sent!');
+      window.location.href = 'screen6.html';
+    }
+  </script>
+</body>
+</html>

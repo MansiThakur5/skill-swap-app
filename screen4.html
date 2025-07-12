@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Screen 4 - Profile View</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Skill Swap Platform</h2>
+    <div class="profile-card">
+      <img src="https://via.placeholder.com/90" class="profile-img" alt="Profile">
+      <h3 id="username">Marc Demo</h3>
+      <p><strong>Skills Offered:</strong> <span id="offered">HTML, Photoshop</span></p>
+      <p><strong>Skills Wanted:</strong> <span id="wanted">Excel, Public Speaking</span></p>
+      <button onclick="openRequestForm()">Request</button>
+      <div class="rating">⭐ 4.5 | 12 feedbacks</div>
+    </div>
+  </div>
+  <script>
+    function openRequestForm() {
+      const name = document.getElementById('username').textContent.trim();
+      const offered = document.getElementById('offered').textContent.trim().split(', ');
+      const wanted = document.getElementById('wanted').textContent.trim().split(', ');
+
+      const profileData = { name, offered, wanted };
+      localStorage.setItem('targetUser', JSON.stringify(profileData));
+      window.location.href = 'screen5.html';
+    }
+  </script>
+</body>
+</html>
