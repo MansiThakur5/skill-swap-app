@@ -1,46 +1,40 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="login.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="login.css">
 </head>
 <body>
-    <div class="login-container">
-        <h1>Login</h1>
-        <form action="#" method="POST" onsubmit="return validateForm(event)">
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="text" id="email" name="email" placeholder="Enter your email" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Enter your password" required>
-            </div>
-            <button type="submit" class="btn">Sign In</button>
-        </form>
-        <p>Don't have an account? <a href="extra.html">Sign Up</a></p>
-    </div>
-
-    <script>
+  <div class="login-container">
+    <h1>Login</h1>
+    <form onsubmit="return validateForm(event)">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" id="email" required />
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" required />
+      </div>
+      <button type="submit" class="btn">Sign In</button>
+    </form>
+    <p>Don't have an account? <a href="#">Sign Up</a></p>
+  </div>
+  <script>
     function validateForm(event) {
-        event.preventDefault(); // Prevent form default submit
-
-        const email = document.getElementById('email').value.trim();
-        const password = document.getElementById('password').value.trim();
-
-        if (email === '' || password === '') {
-            alert('Please fill in both Email and Password.');
-            return false;
-        }
-
-        // Simulate a successful login
-        alert('Login successful!');
-        window.location.href = 'index.html'; // Redirect to index.html
-        return true;
+      event.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      if (email && password) {
+        alert("Login successful");
+        window.location.href = "index.html";
+      } else {
+        alert("Please fill in all fields");
+      }
     }
-</script>
-
+  </script>
 </body>
 </html>
