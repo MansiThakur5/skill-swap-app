@@ -1,16 +1,1 @@
-[
-  {
-    "name": "Marc Demo",
-    "skillsOffered": ["JavaScript", "Python"],
-    "skillsWanted": ["Photoshop", "Graphic Designer"],
-    "rating": 3.9,
-    "availability": "evenings"
-  },
-  {
-    "name": "Michell",
-    "skillsOffered": ["JavaScript", "Python"],
-    "skillsWanted": ["Photoshop", "Graphic Designer"],
-    "rating": 2.5,
-    "availability": "weekends"
-  }
-]
+[]
