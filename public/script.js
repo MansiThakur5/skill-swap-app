@@ -1,15 +1,6 @@
-// Fetch and display users
-function searchUsers() {
-  const avail = document.getElementById('availabilitySearch').value.toLowerCase();
-  fetch(`/api/users?availability=${avail}`)
-    .then(res => res.json())
-    .then(renderUsers);
-}
 
-// Submit form
 document.getElementById('userForm').addEventListener('submit', function (e) {
   e.preventDefault();
-
   const user = {
     name: document.getElementById('name').value,
     skillsOffered: document.getElementById('skillsOffered').value.split(',').map(s => s.trim()),
@@ -22,14 +13,20 @@ document.getElementById('userForm').addEventListener('submit', function (e) {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(user)
-  })
-  .then(() => {
+  }).then(() => {
     searchUsers();
     document.getElementById('userForm').reset();
   });
 });
 
-// Render user cards
+function searchUsers() {
+  const avail = document.getElementById('availabilitySearch').value.toLowerCase();
+  fetch(`/api/users?availability=${avail}`)
+    .then(res => res.json())
+    .then(renderUsers)
+    .catch(console.error);
+}
+
 function renderUsers(users) {
   const container = document.getElementById('profiles');
   container.innerHTML = '';
