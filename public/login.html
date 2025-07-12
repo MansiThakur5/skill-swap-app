@@ -24,18 +24,23 @@
     </div>
 
     <script>
-        function validateForm(event) {
-            const username = document.getElementById('email').value.trim();
-            const password = document.getElementById('password').value.trim();
+    function validateForm(event) {
+        event.preventDefault(); // Prevent form default submit
 
-            if (email === '' || password === '') {
-                alert('Please fill in both Email and password.');
-                return false;
-            }
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value.trim();
 
-            alert('Login successfully!');
-            return true;
+        if (email === '' || password === '') {
+            alert('Please fill in both Email and Password.');
+            return false;
         }
-    </script>
+
+        // Simulate a successful login
+        alert('Login successful!');
+        window.location.href = 'index.html'; // Redirect to index.html
+        return true;
+    }
+</script>
+
 </body>
 </html>
