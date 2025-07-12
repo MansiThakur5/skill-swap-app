@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #fff9ec; /* Cream */
+  background-color: #fff9ec;
   color: #2e2e2e;
   padding: 20px;
 }
@@ -19,7 +19,7 @@ form input, form button {
 }
 
 button {
-  background-color: #333; /* Light Black */
+  background-color: #333;
   color: #fff;
   border: none;
   padding: 10px;
@@ -32,7 +32,7 @@ button:hover {
 }
 
 .profile {
-  background-color: #2f2f2f; /* Light Black */
+  background-color: #2f2f2f;
   color: #fefefe;
   padding: 15px;
   margin: 10px 0;
