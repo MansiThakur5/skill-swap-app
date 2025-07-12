@@ -1,0 +1,4 @@
+body { font-family: sans-serif; background: #111; color: #fff; }
+#app { max-width: 600px; margin: auto; }
+.profile { border: 1px solid #444; margin: 10px; padding: 10px; border-radius: 8px; background: #222; }
+button { background: teal; color: white; padding: 5px 10px; border: none; border-radius: 4px; }
