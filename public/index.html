@@ -2,17 +2,32 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Skill Swap Platform</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div id="app">
     <h1>Skill Swap Platform</h1>
-    <input type="text" id="availability" placeholder="Availability (e.g., weekends)">
+
+    <!-- Add User Form -->
+    <form id="userForm">
+      <input type="text" placeholder="Name" id="name" required />
+      <input type="text" placeholder="Skills Offered (comma separated)" id="skillsOffered" required />
+      <input type="text" placeholder="Skills Wanted (comma separated)" id="skillsWanted" required />
+      <input type="text" placeholder="Availability (e.g., weekends)" id="availability" required />
+      <input type="number" placeholder="Rating (0-5)" id="rating" step="0.1" required />
+      <button type="submit">Add Profile</button>
+    </form>
+
+    <hr/>
+
+    <!-- Availability Filter -->
+    <input type="text" id="availabilitySearch" placeholder="Search by availability">
     <button onclick="searchUsers()">Search</button>
+
     <div id="profiles"></div>
   </div>
+
   <script src="script.js"></script>
 </body>
 </html>
