@@ -1,0 +1,186 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #111;
+  color: #f0f0f0;
+}
+
+.container {
+  padding: 20px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #444;
+  padding-bottom: 10px;
+}
+.request{
+    display: flex;
+    flex-direction: row;
+    align-items: right;
+    
+}
+
+.save-req {
+    margin-right: 12px; /* Adjust the value as needed */
+}
+
+.save-req a {
+    color: #3aaa35;    
+    text-decoration: none;
+    font-weight: bold;    
+}
+.discard-req a {
+    color: #f33;         
+    text-decoration: none; 
+    font-weight: bold;    
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links a {
+  color: #ddd;
+  text-decoration: none;
+  margin: 0 10px;
+  opacity: 0.8;
+  font-weight: 500;
+}
+.nav-links a:hover {
+  opacity: 1;  
+  color: #3aaa35;
+}
+
+.profile-icon {
+  width: 40px;
+  border-radius: 50%;
+  margin-left: 10px;
+}
+
+.profile-section {
+  display: flex;
+  margin-top: 30px;
+}
+
+.left-section, .right-section {
+  flex: 1;
+  padding: 20px;
+}
+
+label {
+  display: block;
+  margin-top: 20px;
+  font-size: 1.1em;
+}
+
+input {
+  width: 90%;
+  padding: 8px;
+  margin-top: 5px;
+  background-color: #222;
+  border: 1px solid #555;
+  color: #ddd;
+}
+
+.skills {
+  margin-top: 10px;
+}
+
+.skills span {
+  display: inline-block;
+  background-color: #333;
+  color: #ddd;
+  padding: 5px 10px;
+  margin: 5px 5px 0 0;
+  border-radius: 20px;
+}
+
+.skills button {
+  background: none;
+  color: #f33;
+  border: none;
+  margin-left: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.profile-photo {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.photo-circle {
+  width: 150px;
+  height: 150px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  margin: 0 auto;
+  line-height: 150px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.photo-btn, .remove-btn {
+  margin: 10px 5px;
+  padding: 5px 10px;
+  background-color: #333;
+  color: #ddd;
+  border: 1px solid #555;
+  cursor: pointer;
+}
+
+.remove-btn {
+  color: #f33;
+}
+#drop-area {
+  position: relative;
+  cursor: pointer;
+  transition: border 0.2s;
+}
+#drop-area.dragover {
+  border: 2px dashed #3aaa35;
+  background: #222;
+}
+#drop-area img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+#photo-text {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #aaa;
+  text-align: center;
+  pointer-events: none;
+}
+
+select {
+    width: 92.5%;
+    padding: 8px;
+    margin-top: 5px;
+    background-color: #222;
+    border: 1px solid #555;
+    color: #ddd;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+}
+
+select:focus {
+    border-color: #3aaa35;
+}
+
+/* Style for the dropdown options */
+select option {
+    background-color: #222;
+    color: #ddd;
+    padding: 8px;
+}
