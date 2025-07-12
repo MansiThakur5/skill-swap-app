@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Profile</title>
+  <link rel="stylesheet" href="extra.css">
+</head>
+<body>
+  <div class="container">
+    <div class="navbar">
+        <div class="request">
+             <div class="save-req">
+                  <a href="#">Save</a>
+             </div>
+             <div class="discard-req">
+                    <a href="#">Discard</a>
+             </div>  
+        </div>   
+     
+      <div class="nav-links">
+        <a href="#">Swap Request</a>
+        <a href="#">Home</a>
+      </div>
+    </div>
+
+    <div class="profile-section">
+      <div class="left-section">
+        <label>Name</label>
+        <input type="text" placeholder="Enter your name">
+        
+        <label>Location</label>
+        <input type="text" placeholder="Enter your location">
+        
+        <label>Skills Offered</label>
+        <div class="skills" id="skills-offered">
+          <input type="text" placeholder="Enter your skills">
+        </div>
+         <label>Skills Wanted</label>
+        <div class="skills" id="skills-wanted">
+          <input type="text" placeholder="Enter skills you want">
+        </div>
+        <label>Availability</label>
+        <input type="text" value="weekends">
+
+        <label>Profile</label>
+        <select>
+            <option value="public">Public</option>
+            <option value="private">Private</option>
+        </select>
+      </div>
+
+      <div class="right-section">
+        <div class="profile-photo">
+          <div class="photo-circle" id="drop-area">
+            <input type="file" id="photo-input" accept="image/*" style="display:none;">Profile Photo
+          </div>
+          <button class="photo-btn" onclick="document.getElementById('photo-input').click()">Add/Edit</button>
+          <button class="remove-btn" onclick="removePhoto()">Remove</button>
+        </div>
+
+       
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
