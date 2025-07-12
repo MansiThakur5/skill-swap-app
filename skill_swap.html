@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Skill Swap Platform</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0e0e0e;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar {
+      background: #111;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .navbar button {
+      background: transparent;
+      color: cyan;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background-color: #1e1e1e;
+      padding: 25px;
+      margin-top: 10px;
+      border-radius: 15px;
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.08);
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: cyan;
+    }
+
+    .profile-card, .request {
+      background-color: #2a2a2a;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .profile-card:hover, .request:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 10px rgba(0,255,255,0.3);
+    }
+
+    .profile-img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      border: 2px solid cyan;
+      display: block;
+      margin: 0 auto 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: cyan;
+      color: black;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 5px;
+      transition: transform 0.25s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      background-color: #00e6e6;
+    }
+
+    textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid #444;
+      background-color: #2d2d2d;
+      color: white;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin: 10px 0 5px;
+    }
+
+    .status {
+      font-weight: bold;
+      margin-left: 10px;
+      transition: color 0.4s ease;
+    }
+
+    .status.Accepted {
+      color: limegreen;
+    }
+
+    .status.Rejected {
+      color: crimson;
+    }
+
+    .screen {
+      display: none;
+    }
+
+    .active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🧭 NAVIGATION BAR -->
+  <div class="navbar">
+    <button onclick="goHome()">🏠 Home</button>
+    <button id="backBtn" onclick="goBack()" style="display: none;">🔙 Back</button>
+  </div>
+
+  <!-- 📦 MAIN CONTAINER -->
+  <div class="container">
+
+    <!-- Screen 4: Profile -->
+    <div id="screen4" class="screen active">
+      <h2>Skill Swap Platform</h2>
+      <div class="profile-card">
+        <img src="https://via.placeholder.com/90" class="profile-img" alt="Profile">
+        <h3 id="username">Marc Demo</h3>
+        <p><strong>Skills Offered:</strong> <span id="offered">HTML, Photoshop</span></p>
+        <p><strong>Skills Wanted:</strong> <span id="wanted">Excel, Public Speaking</span></p>
+        <button onclick="goToScreen5()">Request</button>
+        <div class="rating">⭐ 4.5 | 12 feedbacks</div>
+      </div>
+    </div>
+
+    <!-- Screen 5: Request Form -->
+    <div id="screen5" class="screen">
+      <h2>Send Skill Swap Request</h2>
+      <form onsubmit="submitRequest(event)">
+        <label>Your Offered Skill:</label>
+        <select id="yourSkill">
+          <option>HTML</option>
+          <option>Design</option>
+        </select>
+
+        <label>Skill You Want:</label>
+        <select id="theirSkill"></select>
+
+        <label>Message:</label>
+        <textarea id="message" placeholder="Say something..."></textarea>
+
+        <button type="submit">Submit Request</button>
+      </form>
+    </div>
+
+    <!-- Screen 6: Requests -->
+    <div id="screen6" class="screen">
+      <h2>Your Swap Requests</h2>
+      <div id="requestsArea"></div>
+    </div>
+
+  </div>
+
+  <!-- 🔧 SCRIPT LOGIC -->
+  <script>
+    let currentScreen = "screen4";
+
+    function showScreen(id) {
+      document.querySelectorAll(".screen").forEach(screen => screen.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+      currentScreen = id;
+
+      const backBtn = document.getElementById("backBtn");
+      backBtn.style.display = (id === "screen5" || id === "screen6") ? "inline" : "none";
+    }
+
+    function goHome() {
+      showScreen("screen4");
+    }
+
+    function goBack() {
+      if (currentScreen === "screen5") showScreen("screen4");
+      else if (currentScreen === "screen6") showScreen("screen5");
+    }
+
+    function goToScreen5() {
+      const name = document.getElementById("username").textContent.trim();
+      const offered = document.getElementById("offered").textContent.trim().split(", ");
+      const wanted = document.getElementById("wanted").textContent.trim().split(", ");
+
+      localStorage.setItem("targetUser", JSON.stringify({ name, offered, wanted }));
+      showScreen("screen5");
+
+      const user = JSON.parse(localStorage.getItem("targetUser"));
+      const theirSkill = document.getElementById("theirSkill");
+      theirSkill.innerHTML = "";
+      user.wanted.forEach(skill => {
+        const opt = document.createElement("option");
+        opt.value = skill;
+        opt.textContent = skill;
+        theirSkill.appendChild(opt);
+      });
+    }
+
+    function submitRequest(e) {
+      e.preventDefault();
+      const user = JSON.parse(localStorage.getItem("targetUser"));
+      const request = {
+        to: user.name,
+        offered: document.getElementById("yourSkill").value,
+        wanted: document.getElementById("theirSkill").value,
+        message: document.getElementById("message").value,
+        status: "Pending"
+      };
+
+      const requests = JSON.parse(localStorage.getItem("requests") || "[]");
+      requests.push(request);
+      localStorage.setItem("requests", JSON.stringify(requests));
+
+      alert("Request Sent!");
+      showScreen("screen6");
+      renderRequests();
+    }
+
+    function renderRequests() {
+      const container = document.getElementById("requestsArea");
+      const requests = JSON.parse(localStorage.getItem("requests") || "[]");
+      container.innerHTML = "";
+
+      if (requests.length === 0) {
+        container.innerHTML = "<p>No swap requests yet.</p>";
+        return;
+      }
+
+      requests.forEach((req, index) => {
+        const div = document.createElement("div");
+        div.className = "request";
+
+        let buttons = "";
+        if (req.status === "Pending") {
+          buttons = `
+            <button onclick="updateStatus(${index}, 'Accepted')">Accept</button>
+            <button onclick="updateStatus(${index}, 'Rejected')">Reject</button>
+          `;
+        }
+
+        div.innerHTML = `
+          <p><strong>${req.to}</strong> requested: You teach <em>${req.offered}</em> in exchange for <em>${req.wanted}</em></p>
+          <p><strong>Message:</strong> ${req.message}</p>
+          ${buttons}
+          <span class="status ${req.status}">${req.status}</span>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function updateStatus(index, status) {
+      const requests = JSON.parse(localStorage.getItem("requests") || "[]");
+      requests[index].status = status;
+      localStorage.setItem("requests", JSON.stringify(requests));
+      renderRequests();
+    }
+  </script>
+</body>
+</html>
